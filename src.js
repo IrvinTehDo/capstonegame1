@@ -1,19 +1,26 @@
 const c = document.getElementById("gameCanvas");
 const ctx = c.getContext("2d");
+var stopped = false;
 
+// the line properties
 const player = {
     x: 100,
     height: 25,
     width: 5
 }
 
+// updates the line movement
 const Update = () => {
     player.x += 5;
     if(player.x > 795){
         player.x = 100;
     }
+    if (stopped){ 
+        player.x = 100;    
+    }
 }
 
+// es the long rectangle stroke
 const DrawStrokeRect = (x, width, color) => {
     ctx.beginPath();
     ctx.rect(x, 250, width, 25);
@@ -21,7 +28,7 @@ const DrawStrokeRect = (x, width, color) => {
     ctx.stroke();
     ctx.closePath();
 }
-
+// es the long rectangle color
 const DrawFillRect = (x, width, color) => {
     ctx.beginPath();
     ctx.rect(x, 250, width, 25);
@@ -30,6 +37,7 @@ const DrawFillRect = (x, width, color) => {
     ctx.closePath();
 }
 
+// drawing the line
 const DrawPlayer = (x, width, color) => {
     ctx.beginPath();
     ctx.rect(x, 250, width, 25);
@@ -37,7 +45,7 @@ const DrawPlayer = (x, width, color) => {
     ctx.fill();
     ctx.closePath();
 }
-
+// draws the rect
 const Draw = () => {
     ctx.clearRect(0,0,900,600);
 
@@ -50,12 +58,27 @@ const Draw = () => {
     DrawPlayer(player.x, player.width, "black");
 }
 
+
 const CheckScore = () => {
-    console.log(`key pressed with player x pos: ${player.x}`);
-}
+     if(player.x <= 350 || player.x >= 750)
+     {
+       console.log('Selected WHITE Zone');
+     }
+     else if( (player.x > 350 && player.x < 475) || (player.x >= 625 && player.x < 750) ){
+         console.log('Selected RED Zone');
+     }
+     else if( (player.x >= 475 && player.x < 525) || (player.x > 575 && player.x < 625)){
+         console.log('Selected YELLOW Zone');
+     }
+     else{
+         console.log('Selected GREEN Zone');
+     }
+     var yes = false;
+    }
 
 window.addEventListener("keypress", (e) => {
     CheckScore();
+     stopped = true;
 });
 
 //Draw at 60fps
