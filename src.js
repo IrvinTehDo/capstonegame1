@@ -14,20 +14,51 @@ const Update = () => {
     }
 }
 
-const Draw = () => {
-    ctx.clearRect(0,0,900,600);
-
+const DrawStrokeRect = (x, width, color) => {
     ctx.beginPath();
-    ctx.rect(100, 250, 700, 25);
+    ctx.rect(x, 250, width, 25);
+    ctx.strokeStyle = color;
     ctx.stroke();
     ctx.closePath();
+}
 
+const DrawFillRect = (x, width, color) => {
     ctx.beginPath();
-    ctx.rect(player.x, 250, player.width, 25);
+    ctx.rect(x, 250, width, 25);
+    ctx.fillStyle = color;
     ctx.fill();
     ctx.closePath();
 }
 
+const DrawPlayer = (x, width, color) => {
+    ctx.beginPath();
+    ctx.rect(x, 250, width, 25);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.closePath();
+}
+
+const Draw = () => {
+    ctx.clearRect(0,0,900,600);
+
+    // X-pos, Width, stroke/fill color
+    DrawStrokeRect(100, 700, "black");
+    DrawFillRect(350, 400, "red");
+    DrawFillRect(475, 150, "yellow");
+    DrawFillRect(525, 50, "green");
+
+    DrawPlayer(player.x, player.width, "black");
+}
+
+const CheckScore = () => {
+    console.log(`key pressed with player x pos: ${player.x}`);
+}
+
+window.addEventListener("keypress", (e) => {
+    CheckScore();
+});
+
+//Draw at 60fps
 setInterval(() => {
     Update();
     Draw();
