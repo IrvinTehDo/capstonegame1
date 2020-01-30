@@ -2,87 +2,113 @@ const c = document.getElementById("gameCanvas");
 const ctx = c.getContext("2d");
 var stopped = false;
 
-// the line properties
-const player = {
-    x: 100,
-    height: 25,
-    width: 5
-}
+var center_x = 200;
+var center_y = 100;
+var width = 100;
+var height = 200;
 
-// updates the line movement
-const Update = () => {
-    player.x += 5;
-    if(player.x > 795){
-        player.x = 100;
-    }
-    if (stopped){ 
-        player.x = 100;    
-    }
-}
 
-// es the long rectangle stroke
-const DrawStrokeRect = (x, width, color) => {
+const drawOvalShape = (context, center_x, center_y, width, height) =>{
     ctx.beginPath();
-    ctx.rect(x, 250, width, 25);
-    ctx.strokeStyle = color;
+    ctx.ellipse(center_x, center_y, width, height,  90 * Math.PI/180, 0, 2 * Math.PI);
+
     ctx.stroke();
     ctx.closePath();
 }
+
+drawOvalShape(ctx, 500, 300, 250, 450);
+drawOvalShape(ctx, 500, 300, 200, 350);
+drawOvalShape(ctx, 500, 300, 150, 250);
+drawOvalShape(ctx, 500, 300, 100, 150);
+drawOvalShape(ctx, 500, 300, 50, 50);
+
+// the line properties
+// const player = {
+//     x: 100,
+//     height: 25,
+//     width: 5
+// }
+
+// updates the line movement
+// const Update = () => {
+//     player.x += 5;
+//     if(player.x > 795){
+//         player.x = 100;
+//     }
+//     if (stopped){ 
+//         player.x = 100;    
+//     }
+// }
+
+// draw ellipse
+
+// es the long rectangle stroke
+// const DrawStrokeRect = (x, width, color) => {
+//     ctx.beginPath();
+//     ctx.rect(x, 250, width, 25);
+//     ctx.strokeStyle = color;
+//     ctx.stroke();
+//     ctx.closePath();
+// }
 // es the long rectangle color
-const DrawFillRect = (x, width, color) => {
-    ctx.beginPath();
-    ctx.rect(x, 250, width, 25);
-    ctx.fillStyle = color;
-    ctx.fill();
-    ctx.closePath();
-}
+// const DrawFillRect = (x, width, color) => {
+//     ctx.beginPath();
+//     ctx.rect(x, 250, width, 25);
+//     ctx.fillStyle = color;
+//     ctx.fill();
+//     ctx.closePath();
+// }
 
 // drawing the line
-const DrawPlayer = (x, width, color) => {
-    ctx.beginPath();
-    ctx.rect(x, 250, width, 25);
-    ctx.fillStyle = color;
-    ctx.fill();
-    ctx.closePath();
-}
+// const DrawPlayer = (x, width, color) => {
+//     ctx.beginPath();
+//     ctx.rect(x, 250, width, 25);
+//     ctx.fillStyle = color;
+//     ctx.fill();
+//     ctx.closePath();
+// }
+
 // draws the rect
-const Draw = () => {
-    ctx.clearRect(0,0,900,600);
+// const Draw = () => {
+//     ctx.clearRect(0,0,900,600);
 
     // X-pos, Width, stroke/fill color
-    DrawStrokeRect(100, 700, "black");
-    DrawFillRect(350, 400, "red");
-    DrawFillRect(475, 150, "yellow");
-    DrawFillRect(525, 50, "green");
+    // DrawStrokeRect(100, 700, "black");
+    // DrawFillRect(350, 400, "red");
+    // DrawFillRect(475, 150, "yellow");
+    // DrawFillRect(525, 50, "green");
 
-    DrawPlayer(player.x, player.width, "black");
-}
+    // DrawPlayer(player.x, player.width, "black");
+ // }
 
 
-const CheckScore = () => {
-     if(player.x <= 350 || player.x >= 750)
-     {
-       console.log('Selected WHITE Zone');
-     }
-     else if( (player.x > 350 && player.x < 475) || (player.x >= 625 && player.x < 750) ){
-         console.log('Selected RED Zone');
-     }
-     else if( (player.x >= 475 && player.x < 525) || (player.x > 575 && player.x < 625)){
-         console.log('Selected YELLOW Zone');
-     }
-     else{
-         console.log('Selected GREEN Zone');
-     }
-     var yes = false;
-    }
+// const CheckScore = () => {
+//      if(player.x <= 350 || player.x >= 750)
+//      {
+//        console.log('Selected WHITE Zone');
+//      }
+//      else if( (player.x > 350 && player.x < 475) || (player.x >= 625 && player.x < 750) ){
+//          console.log('Selected RED Zone');
+//      }
+//      else if( (player.x >= 475 && player.x < 525) || (player.x > 575 && player.x < 625)){
+//          console.log('Selected YELLOW Zone');
+//      }
+//      else{
+//          console.log('Selected GREEN Zone');
+//      }
+//     }
 
-window.addEventListener("keypress", (e) => {
-    CheckScore();
-     stopped = true;
-});
+// window.addEventListener("keypress", (e) => {
+//     CheckScore();
+//      stopped = true;
+// });
 
 //Draw at 60fps
-setInterval(() => {
-    Update();
-    Draw();
-}, 1000/60);
+// setInterval(() => {
+//    Update();
+//     Draw();
+// }, 1000/60);
+
+
+
+
