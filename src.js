@@ -11,12 +11,11 @@ const player = {
 
 // updates the line movement
 const Update = () => {
-    player.x += 5;
-    if(player.x > 795){
-        player.x = 100;
-    }
-    if (stopped){ 
-        player.x = 100;    
+    if(!stopped){
+        player.x += 5;
+        if(player.x > 795){
+            player.x = 100;
+        }
     }
 }
 
@@ -73,12 +72,16 @@ const CheckScore = () => {
      else{
          console.log('Selected GREEN Zone');
      }
-     var yes = false;
     }
 
 window.addEventListener("keypress", (e) => {
-    CheckScore();
-     stopped = true;
+    if(!stopped){
+        CheckScore()
+        stopped = true;
+    } else {
+        stopped = false;
+        player.x = 100;
+    }
 });
 
 //Draw at 60fps
