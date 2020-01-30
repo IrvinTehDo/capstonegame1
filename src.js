@@ -1,78 +1,53 @@
 const c = document.getElementById("gameCanvas");
 const ctx = c.getContext("2d");
 var stopped = false;
+const CENTER_X = 500;
+const CENTER_Y = 300;
 
-// the line properties
 const player = {
-    x: 100,
-    height: 25,
-    width: 5
+    radius: 1,
+    direction: 1,
+    speed: 3
+};
+
+const drawOvalShape = (ctx, center_x, center_y, radius, color) =>{
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.ellipse(center_x, center_y, radius, radius,  90 * Math.PI/180, 0, 2 * Math.PI);
+
+    ctx.stroke();
+    ctx.closePath();
 }
+
 
 // updates the line movement
 const Update = () => {
     if(!stopped){
-        player.x += 5;
-        if(player.x > 795){
-            player.x = 100;
+        player.radius += (player.speed * player.direction);
+        if(player.radius >= 250){
+            player.direction *= -1;
+        } else if (player.radius <= 1){
+            player.direction *= -1;
         }
     }
 }
 
-// es the long rectangle stroke
-const DrawStrokeRect = (x, width, color) => {
-    ctx.beginPath();
-    ctx.rect(x, 250, width, 25);
-    ctx.strokeStyle = color;
-    ctx.stroke();
-    ctx.closePath();
-}
-// es the long rectangle color
-const DrawFillRect = (x, width, color) => {
-    ctx.beginPath();
-    ctx.rect(x, 250, width, 25);
-    ctx.fillStyle = color;
-    ctx.fill();
-    ctx.closePath();
-}
-
-// drawing the line
-const DrawPlayer = (x, width, color) => {
-    ctx.beginPath();
-    ctx.rect(x, 250, width, 25);
-    ctx.fillStyle = color;
-    ctx.fill();
-    ctx.closePath();
-}
-// draws the rect
 const Draw = () => {
-    ctx.clearRect(0,0,900,600);
+    ctx.clearRect(0,0,1000,600);
 
-    // X-pos, Width, stroke/fill color
-    DrawStrokeRect(100, 700, "black");
-    DrawFillRect(350, 400, "red");
-    DrawFillRect(475, 150, "yellow");
-    DrawFillRect(525, 50, "green");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radius, "red");
 
-    DrawPlayer(player.x, player.width, "black");
-}
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 250, "black");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 200, "black");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 150, "black");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 100, "black");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 50, "black");
+ }
 
 
 const CheckScore = () => {
-     if(player.x <= 350 || player.x >= 750)
-     {
-       console.log('Selected WHITE Zone');
-     }
-     else if( (player.x > 350 && player.x < 475) || (player.x >= 625 && player.x < 750) ){
-         console.log('Selected RED Zone');
-     }
-     else if( (player.x >= 475 && player.x < 525) || (player.x > 575 && player.x < 625)){
-         console.log('Selected YELLOW Zone');
-     }
-     else{
-         console.log('Selected GREEN Zone');
-     }
-    }
+
+}
 
 window.addEventListener("keypress", (e) => {
     if(!stopped){
@@ -80,12 +55,17 @@ window.addEventListener("keypress", (e) => {
         stopped = true;
     } else {
         stopped = false;
-        player.x = 100;
+        player.radius = 1;
+        player.direction = 1;
     }
 });
 
-//Draw at 60fps
+// Draw at 60fps
 setInterval(() => {
-    Update();
+   Update();
     Draw();
 }, 1000/60);
+
+
+
+
