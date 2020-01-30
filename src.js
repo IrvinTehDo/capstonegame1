@@ -50,7 +50,7 @@ const CheckScore = () => {
 if(player.radius < 100 && player.radius >= 0){
     console.log("HOT ZONE");
 }
-else if(player.radius >= 100 && player.radius <= 175){
+else if(player.radius > 100 && player.radius < 175){
     console.log("NICE ZONE");
 }
 else{
