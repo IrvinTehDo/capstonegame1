@@ -35,13 +35,14 @@ const Update = () => {
 const Draw = () => {
     ctx.clearRect(0,0,1000,600);
 
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radius, "red");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radius, "black");
 
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 250, "black");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 200, "black");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 150, "black");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 100, "black");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 50, "black");
+
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 250, "blue");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 200, "blue");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 150, "green");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 100, "red");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 50, "red");
  }
 
 
