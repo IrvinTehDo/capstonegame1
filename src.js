@@ -19,6 +19,19 @@ const drawOvalShape = (ctx, center_x, center_y, radius, color) =>{
     ctx.closePath();
 }
 
+// Code
+// That
+// Will
+// Cause
+// A
+// Merge
+// Conflict
+// That
+// Needs
+// To
+// Be
+// Pushed
+
 
 // updates the line movement
 const Update = () => {
