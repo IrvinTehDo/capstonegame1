@@ -19,6 +19,7 @@ const drawOvalShape = (ctx, center_x, center_y, radius, color) =>{
     ctx.closePath();
 }
 
+<<<<<<< HEAD
 // Code
 // That
 // Will
@@ -32,6 +33,21 @@ const drawOvalShape = (ctx, center_x, center_y, radius, color) =>{
 // Be
 // Pushed
 
+=======
+// These
+// Lines
+// Of
+// Code
+// Will
+// Be
+// Edited
+// They
+// Will
+// Cause
+// A 
+// Merge
+// Conflict
+>>>>>>> 5cfc3fa3f8c7be423829b495d058e5d4554727f9
 
 // updates the line movement
 const Update = () => {
@@ -48,13 +64,14 @@ const Update = () => {
 const Draw = () => {
     ctx.clearRect(0,0,1000,600);
 
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radius, "red");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radius, "black");
 
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 250, "black");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 200, "black");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 150, "black");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 100, "black");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 50, "black");
+
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 250, "blue");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 200, "blue");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 150, "green");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 100, "red");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 50, "red");
  }
 
 
@@ -62,7 +79,7 @@ const CheckScore = () => {
 if(player.radius < 100 && player.radius >= 0){
     console.log("HOT ZONE");
 }
-else if(player.radius >= 100 && player.radius <= 175){
+else if(player.radius > 100 && player.radius < 175){
     console.log("NICE ZONE");
 }
 else{
