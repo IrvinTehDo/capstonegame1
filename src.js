@@ -61,6 +61,7 @@ window.addEventListener("keypress", (e) => {
     if(!stopped){
         CheckScore()
         stopped = true;
+        player.speed += 1.5;
     } else {
         stopped = false;
         player.radius = 1;
