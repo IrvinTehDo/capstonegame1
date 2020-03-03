@@ -3,6 +3,7 @@ const ctx = c.getContext("2d");
 var stopped = false;
 const CENTER_X = 500;
 const CENTER_Y = 300;
+let setter = 1;
 
 const player = {
     radius: 1,
@@ -61,7 +62,14 @@ window.addEventListener("keypress", (e) => {
     if(!stopped){
         CheckScore()
         stopped = true;
-        player.speed += 1.5;
+
+        if(setter < 4){
+            player.speed += 1.5;
+            setter++;
+        }
+        else{
+            console.log('Move on to next screen.');
+        }
     } else {
         stopped = false;
         player.radius = 1;
