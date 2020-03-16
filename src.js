@@ -1,20 +1,21 @@
 const c = document.getElementById("gameCanvas");
 const ctx = c.getContext("2d");
 var stopped = false;
-const CENTER_X = 500;
-const CENTER_Y = 300;
+const CENTER_X = 592;
+const CENTER_Y = 378;
 let setter = 1;
 
 const player = {
-    radius: 1,
+    radiusX: 1,
+    radiusY: 1,
     direction: 1,
     speed: 3
 };
 
-const drawOvalShape = (ctx, center_x, center_y, radius, color) =>{
+const drawOvalShape = (ctx, center_x, center_y, radiusX, radiusY, color) =>{
     ctx.beginPath();
     ctx.strokeStyle = color;
-    ctx.ellipse(center_x, center_y, radius, radius,  90 * Math.PI/180, 0, 2 * Math.PI);
+    ctx.ellipse(center_x, center_y, radiusX, radiusY,  90 * Math.PI/180, 0, 2 * Math.PI);
 
     ctx.stroke();
     ctx.closePath();
@@ -23,34 +24,35 @@ const drawOvalShape = (ctx, center_x, center_y, radius, color) =>{
 // updates the line movement
 const Update = () => {
     if(!stopped){
-        player.radius += (player.speed * player.direction);
-        if(player.radius >= 250){
+        player.radiusX += ((player.speed * (756/1184)) * player.direction);
+        player.radiusY += (player.speed * player.direction);
+        if(player.radiusY >= 590){
             player.direction *= -1;
-        } else if (player.radius <= 1){
+        } else if (player.radiusY <= 1){
             player.direction *= -1;
         }
     }
 }
 
 const Draw = () => {
-    ctx.clearRect(0,0,1000,600);
+    ctx.clearRect(0,0,1400,800);
 
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radius, "black");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radiusX, player.radiusY, "green");
 
 
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 250, "blue");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 200, "blue");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 150, "green");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 100, "red");
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 50, "red");
+    // drawOvalShape(ctx, CENTER_X, CENTER_Y, 250, 250, "blue");
+    // drawOvalShape(ctx, CENTER_X, CENTER_Y, 200, 200, "blue");
+    // drawOvalShape(ctx, CENTER_X, CENTER_Y, 150, 150, "green");
+    // drawOvalShape(ctx, CENTER_X, CENTER_Y, 100, 100, "red");
+    // drawOvalShape(ctx, CENTER_X, CENTER_Y, 50, 50, "red");
  }
 
 
 const CheckScore = () => {
-if(player.radius < 100 && player.radius >= 0){
+if(player.radiusY < 100 && player.radiusY >= 0){
     console.log("HOT ZONE");
 }
-else if(player.radius > 100 && player.radius < 175){
+else if(player.radiusY > 100 && player.radiusY < 175){
     console.log("NICE ZONE");
 }
 else{
@@ -72,7 +74,8 @@ window.addEventListener("keypress", (e) => {
         }
     } else {
         stopped = false;
-        player.radius = 1;
+        player.radiusX = 1;
+        player.radiusY = 1;
         player.direction = 1;
     }
 });
