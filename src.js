@@ -15,10 +15,19 @@ const player = {
 const drawOvalShape = (ctx, center_x, center_y, radiusX, radiusY, color) =>{
     ctx.beginPath();
     ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
     ctx.ellipse(center_x, center_y, radiusX, radiusY,  90 * Math.PI/180, 0, 2 * Math.PI);
-
     ctx.stroke();
     ctx.closePath();
+}
+
+const drawRectShape = (ctx, x, y, width, height, color) => {
+    ctx.beginPath();
+    ctx.strokeColor = color;
+    ctx.lineWidth = 2;
+    ctx.rect(x, y, width, height);
+    ctx.stroke();
+    ctx.closePath()
 }
 
 // updates the line movement
@@ -37,14 +46,12 @@ const Update = () => {
 const Draw = () => {
     ctx.clearRect(0,0,1400,800);
 
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radiusX, player.radiusY, "green");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radiusX, player.radiusY, "white");
+    drawRectShape(ctx, CENTER_X - player.radiusY - 7, CENTER_Y, 15, 1);
+    drawRectShape(ctx, CENTER_X + player.radiusY - 7, CENTER_Y, 15, 1);
 
-
-    // drawOvalShape(ctx, CENTER_X, CENTER_Y, 250, 250, "blue");
-    // drawOvalShape(ctx, CENTER_X, CENTER_Y, 200, 200, "blue");
-    // drawOvalShape(ctx, CENTER_X, CENTER_Y, 150, 150, "green");
-    // drawOvalShape(ctx, CENTER_X, CENTER_Y, 100, 100, "red");
-    // drawOvalShape(ctx, CENTER_X, CENTER_Y, 50, 50, "red");
+    drawRectShape(ctx, CENTER_X, CENTER_Y - player.radiusX - 7, 1, 15);
+    drawRectShape(ctx, CENTER_X, CENTER_Y + player.radiusX - 7 , 1, 15);
  }
 
 
