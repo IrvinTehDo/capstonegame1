@@ -5,13 +5,25 @@
     <title>Prototype</title>
 </head>
 <style>
-    body{
-        margin: 0
-    };
-    #background{
-        position: absolute;
-        z-index: 1;
+    #background-img{
+        min-height: 100%;
+        min-width: 1024px;
+
+        width: 100%;
+        height: auto;
+
+        position: fixed;
+        top: 0;
+        left: 0;
     }
+    
+    @media screen and (max-width: 1024px) {
+        #background-img {
+            left: 50%;
+            margin-left: -512px;
+        }
+    }
+
     #gameCanvas{
         position: absolute;
         z-index: 5;
@@ -20,7 +32,7 @@
     }
 </style>
 <body>
-    <image id="background" src="assets/bg.png"></image>
+    <img src="assets/bg.png" id="background-img" alt="">
     <canvas id="gameCanvas" width="1184" height="756"></canvas>
     <script src="src.js"></script>
 </body>
