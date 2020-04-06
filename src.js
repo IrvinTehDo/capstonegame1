@@ -2,7 +2,7 @@ const c = document.getElementById("gameCanvas");
 const ctx = c.getContext("2d");
 var stopped = false;
 const CENTER_X = 592;
-const CENTER_Y = 378;
+const CENTER_Y = 329;
 let setter = 1;
 
 const player = {
@@ -33,7 +33,7 @@ const drawRectShape = (ctx, x, y, width, height, color) => {
 // updates the line movement
 const Update = () => {
     if(!stopped){
-        player.radiusX += ((player.speed * (756/1184)) * player.direction);
+        player.radiusX += ((player.speed * (658/1184)) * player.direction);
         player.radiusY += (player.speed * player.direction);
         if(player.radiusY >= 590){
             player.direction *= -1;

@@ -5,14 +5,22 @@
     <title>Prototype</title>
 </head>
 <style>
-    #background-img{
+     @font-face { font-family: Oxanium; src: url('assets/fonts/Oxanium-Medium.ttf'); } 
+     @font-face { font-family: Oxanium; font-weight: bold; src: url('assets/fonts/Oxanium-SemiBold.ttf');}
+     @font-face { font-family: Orbitron; src: url('assets/fonts/Orbitron-Medium.ttf');}
+
+    body{
+        margin: 0;
         min-height: 100%;
+    }
+
+    #background-img{
         min-width: 1024px;
 
         width: 100%;
-        height: auto;
+        height: 100%;
 
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
     }
@@ -28,12 +36,69 @@
         position: absolute;
         z-index: 5;
         left: 534px;
-        top: 162px;
+        top: 140px;
     }
+
+    #scoreText {
+        font-family: Oxanium;
+        font-size: 40px;
+        color: white;
+        text-align: center;
+        line-height: 35px;
+        letter-spacing: 5px;
+
+        position: absolute;
+        z-index: 6;
+        left: 85px;
+        top: 182px;
+        width: 302px;
+        height: 73px;
+        margin: 0;
+        padding-top: 20px;
+    }
+
+    #accText {
+        font-family: Orbitron;
+        font-size: 23px;
+        color: white;
+        text-align: center;
+        line-height: 35px;
+        letter-spacing: 5px;
+
+        position: absolute;
+        z-index: 6;
+        left: 176px;
+        top: 382px;
+        width: 121px;
+        height: 61px;
+        margin: 0;
+    }
+
+    #timeText {
+        font-family: Oxanium;
+        font-size: 40px;
+        font-style: bold;
+        color: white;
+        text-align: center;
+        line-height: 35px;
+        letter-spacing: 5px;
+
+        position: absolute;
+        z-index: 6;
+        left: 1619px;
+        top: 62px;
+        width: 164px;
+        height: 43px;
+        margin: 0;
+    }
+
 </style>
 <body>
     <img src="assets/bg.png" id="background-img" alt="">
-    <canvas id="gameCanvas" width="1184" height="756"></canvas>
+    <canvas id="gameCanvas" width="1184" height="658"></canvas>
+    <p id="scoreText"> 1500 </p>
+    <p id="accText">82%</p>
+    <p id="timeText">00:30</p>
     <script src="src.js"></script>
 </body>
 </html>
