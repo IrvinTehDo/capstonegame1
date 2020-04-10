@@ -2,10 +2,13 @@ const c = document.getElementById("gameCanvas");
 const ctx = c.getContext("2d");
 var stopped = false;
 var score = 0;
+var time = 60;
+var frame = 0;
 const CENTER_X = 592;
 const CENTER_Y = 329;
 
 const scoreText = document.getElementById('scoreText');
+const timeText = document.getElementById('timeText');
 
 let setter = 1;
 
@@ -52,6 +55,25 @@ const Update = () => {
     } else{
         // display score
         scoreText.innerText = `${score}`;
+    }
+
+    frame++;
+    console.log(frame);
+    if(frame == 60){
+        frame = 0;
+        time--;
+    }
+
+    if(time == 60){
+        timeText.innerText = '01:00';
+    } else if(time < 60){
+        timeText.innerText = `00:${time}`;
+    } else if (time <= 0){
+        timeText.innerText = `00:00`;
+    }
+
+    if(time <= 0){
+        stopped = true;
     }
 }
 
@@ -105,7 +127,7 @@ window.addEventListener("keypress", (e) => {
 // Draw at 60fps
 setInterval(() => {
    Update();
-    Draw();
+   Draw();
 }, 1000/60);
 
 
