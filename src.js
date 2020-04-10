@@ -66,8 +66,10 @@ const Update = () => {
 
     if(time == 60){
         timeText.innerText = '01:00';
-    } else if(time < 60 && time > 0){
+    } else if(time < 60 && time > 10){
         timeText.innerText = `00:${time}`;
+    } else if(time < 10 && time > 0){
+        timeText.innerText =`00:0${time}`;
     } else if (time <= 0){
         timeText.innerText = `00:00`;
     }
