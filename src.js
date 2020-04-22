@@ -11,7 +11,6 @@ const CENTER_X = 1107;
 const CENTER_Y = 540;
 var greenRadiusX = 243;
 var greenRadiusY = 417;
-var sum = greenRadiusX + greenRadiusY;
 
 var score = 0;
 var timer = '01:00';
@@ -140,10 +139,14 @@ const CheckScore = () => {
 if(player.radiusY < 249 && player.radiusY >= 0){
    // console.log("HOT ZONE");
     score += 100;
+    accuracyPercentage = Math.ceil((player.radiusY / (249)) * 100);  // compares radius of the white to the minGreenRadiusY
+    accuracy = accuracyPercentage + '%';
 }
 else if( (player.radiusY > 249 ) && (player.radiusY < greenRadiusY)){
     console.log("NICE ZONE");
     score += 150;
+    accuracyPercentage = 100;
+    accuracy = accuracyPercentage + '%';
 
     if(greenRadiusX >= 145 && greenRadiusY >= 249){  // makes sure the green circle doesn't get smaller than the white one
     greenRadiusX -= 10;  // decrease the green radius everytime player hits green zone
@@ -153,6 +156,8 @@ else if( (player.radiusY > 249 ) && (player.radiusY < greenRadiusY)){
 }
 else{
    // console.log("COLD ZONE");
+   accuracyPercentage = Math.ceil((greenRadiusY / player.radiusY) * 100); // player radius divided by max greenRadiusY
+   accuracy = accuracyPercentage + '%';
     score += 100;
 }
 }
