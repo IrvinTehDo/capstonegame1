@@ -31,7 +31,6 @@ const drawOvalShape = (ctx, center_x, center_y, radiusX, radiusY, color) =>{
     ctx.stroke();
     ctx.closePath();
 
-    console.log(radiusX, radiusY);
 }
 
 // draw
@@ -62,14 +61,6 @@ const Update = () => {
         } else if (player.radiusY <= 1){
             player.direction *= -1;
         }
-    }
-
-    if(score == 0){
-        // display 0000
-        scoreText.innerText = '0000';
-    } else{
-        // display score
-        scoreText.innerText = `${score}`;
     }
 
     frame++;
@@ -112,12 +103,15 @@ const Draw = () => {
         DrawText(ctx, 225, 480, 'Orbitron', 'normal', 25, 'white', accuracy);
     }
 
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radiusX, player.radiusY, "white");
-    drawRectShape(ctx, CENTER_X - player.radiusY - 7, CENTER_Y, 15, 1);
-    drawRectShape(ctx, CENTER_X + player.radiusY - 7, CENTER_Y, 15, 1);
+    // drawing for the circles
+    // drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radiusX, player.radiusY, "white");
+    // drawRectShape(ctx, CENTER_X - player.radiusY - 7, CENTER_Y, 15, 1);
+    // drawRectShape(ctx, CENTER_X + player.radiusY - 7, CENTER_Y, 15, 1);
+    // drawRectShape(ctx, CENTER_X, CENTER_Y - player.radiusX - 7, 1, 15);
+    // drawRectShape(ctx, CENTER_X, CENTER_Y + player.radiusX - 7 , 1, 15); 
 
-    drawRectShape(ctx, CENTER_X, CENTER_Y - player.radiusX - 7, 1, 15);
-    drawRectShape(ctx, CENTER_X, CENTER_Y + player.radiusX - 7 , 1, 15);
+
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 243, 417, "white");
  }
 
 
@@ -141,7 +135,7 @@ window.addEventListener("keypress", (e) => {
         CheckScore()
         stopped = true;
 
-        if(setter < 10){
+        if(setter < 10){            // inscrease speed
             player.speed += 1.5;
             setter++;
         }
