@@ -9,6 +9,9 @@ var time = 60;
 var frame = 0;
 const CENTER_X = 1107;
 const CENTER_Y = 540;
+var greenRadiusX = 243;
+var greenRadiusY = 417;
+var sum = greenRadiusX + greenRadiusY;
 
 var score = 0;
 var timer = '01:00';
@@ -20,17 +23,21 @@ const player = {
     radiusX: 1,
     radiusY: 1,
     direction: 1,
-    speed: 3
+    speed: 3,
 };
 
-const drawOvalShape = (ctx, center_x, center_y, radiusX, radiusY, color) =>{
+const drawOvalShape = (ctx, center_x, center_y, radiusX, radiusY, strokeColor, alpha, fillColor) =>{
     ctx.beginPath();
-    ctx.strokeStyle = color;
+    ctx.save();
+    ctx.strokeStyle = strokeColor;
+    ctx.fillStyle = fillColor;
+    ctx.globalAlpha = alpha;
     ctx.lineWidth = 2;
     ctx.ellipse(center_x, center_y, radiusX, radiusY,  90 * Math.PI/180, 0, 2 * Math.PI);
     ctx.stroke();
+    ctx.fill();
+    ctx.restore();
     ctx.closePath();
-
 }
 
 // draw
@@ -90,42 +97,62 @@ const Draw = () => {
     const bg = new Image();
     bg.src = "assets/bg.png";
     ctx.drawImage(bg,0,0,1900,1080);
+
+    const button = new Image();
+    button.src = "assets/button.svg";
+    ctx.drawImage(button,1500,750,250,250);
     if(score == 0){
         DrawText(ctx, 210, 310, 'Orbitron', 'normal', 40, 'white', '000');
     } else {
         DrawText(ctx, 210, 310, 'Orbitron', 'normal', 40, 'white', score);
     }
     DrawText(ctx, 1590, 170, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
+
     if(accuracy == '0' + '%'){
-    DrawText(ctx, 225, 480, 'Orbitron', 'normal', 25, 'white', '???%');   // drawing the accuracy 
+    DrawText(ctx, 225, 480, 'Orbitron', 'normal', 25, 'white', '00%');   // drawing the accuracy 
     }
     else{
         DrawText(ctx, 225, 480, 'Orbitron', 'normal', 25, 'white', accuracy);
     }
 
     // drawing for the circles
-    // drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radiusX, player.radiusY, "white");
-    // drawRectShape(ctx, CENTER_X - player.radiusY - 7, CENTER_Y, 15, 1);
-    // drawRectShape(ctx, CENTER_X + player.radiusY - 7, CENTER_Y, 15, 1);
-    // drawRectShape(ctx, CENTER_X, CENTER_Y - player.radiusX - 7, 1, 15);
-    // drawRectShape(ctx, CENTER_X, CENTER_Y + player.radiusX - 7 , 1, 15); 
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radiusX, player.radiusY, "white", 1, "transparent");
+    drawRectShape(ctx, CENTER_X - player.radiusY - 7, CENTER_Y, 15, 1);
+    drawRectShape(ctx, CENTER_X + player.radiusY - 7, CENTER_Y, 15, 1);
+    drawRectShape(ctx, CENTER_X, CENTER_Y - player.radiusX - 7, 1, 15);
+    drawRectShape(ctx, CENTER_X, CENTER_Y + player.radiusX - 7 , 1, 15); 
 
 
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 243, 417, "white");
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, greenRadiusX, greenRadiusY, "white", .1, "green"); // movable green oval
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 145, 249, "white", .09, "blue"); // white one before green
+
+
+    //radius of green oval rad x = 243, rad y = 417
+    //radius of smaller white circle rad x = 145, rad y = 249
+    // difference radx 98        diff rad = 168
  }
 
 
 const CheckScore = () => {
-if(player.radiusY < 100 && player.radiusY >= 0){
-    console.log("HOT ZONE");
+    console.log("Player Radius Y: " + player.radiusY);
+    console.log("Green Radius Y: " + greenRadiusY);
+
+if(player.radiusY < 249 && player.radiusY >= 0){
+   // console.log("HOT ZONE");
     score += 100;
 }
-else if(player.radiusY > 100 && player.radiusY < 175){
+else if( (player.radiusY > 249 ) && (player.radiusY < greenRadiusY)){
     console.log("NICE ZONE");
     score += 150;
+
+    if(greenRadiusX >= 145 && greenRadiusY >= 249){  // makes sure the green circle doesn't get smaller than the white one
+    greenRadiusX -= 10;  // decrease the green radius everytime player hits green zone
+    greenRadiusY -= 18;
+    }
+
 }
 else{
-    console.log("COLD ZONE");
+   // console.log("COLD ZONE");
     score += 100;
 }
 }
@@ -135,7 +162,7 @@ window.addEventListener("keypress", (e) => {
         CheckScore()
         stopped = true;
 
-        if(setter < 10){            // inscrease speed
+        if(setter < 10){            // increase speed
             player.speed += 1.5;
             setter++;
         }
