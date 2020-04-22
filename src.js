@@ -12,6 +12,7 @@ const CENTER_Y = 540;
 var greenRadiusX = 243;
 var greenRadiusY = 417;
 
+var button = new Image();
 var score = 0;
 var timer = '01:00';
 var accuracy = '0%';
@@ -97,7 +98,6 @@ const Draw = () => {
     bg.src = "assets/bg.png";
     ctx.drawImage(bg,0,0,1900,1080);
 
-    const button = new Image();
     button.src = "assets/button.svg";
     ctx.drawImage(button,1500,750,250,250);
     if(score == 0){
@@ -162,7 +162,7 @@ else{
 }
 }
 
-window.addEventListener("keypress", (e) => {
+button.addEventListener("click", function (e){
     if(!stopped){
         CheckScore()
         stopped = true;
