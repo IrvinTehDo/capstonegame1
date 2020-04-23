@@ -11,8 +11,8 @@ const CENTER_X = 1107;
 const CENTER_Y = 540;
 var greenRadiusX = 243;
 var greenRadiusY = 417;
+var button = document.getElementById('button');
 
-var button = new Image();
 var score = 0;
 var timer = '01:00';
 var accuracy = '0%';
@@ -98,8 +98,7 @@ const Draw = () => {
     bg.src = "assets/bg.png";
     ctx.drawImage(bg,0,0,1900,1080);
 
-    button.src = "assets/button.svg";
-    ctx.drawImage(button,1500,750,250,250);
+
     if(score == 0){
         DrawText(ctx, 210, 310, 'Orbitron', 'normal', 40, 'white', '000');
     } else {
@@ -124,17 +123,11 @@ const Draw = () => {
 
     drawOvalShape(ctx, CENTER_X, CENTER_Y, greenRadiusX, greenRadiusY, "white", .1, "green"); // movable green oval
     drawOvalShape(ctx, CENTER_X, CENTER_Y, 145, 249, "white", .09, "blue"); // white one before green
-
-
-    //radius of green oval rad x = 243, rad y = 417
-    //radius of smaller white circle rad x = 145, rad y = 249
-    // difference radx 98        diff rad = 168
+    
  }
 
 
 const CheckScore = () => {
-    console.log("Player Radius Y: " + player.radiusY);
-    console.log("Green Radius Y: " + greenRadiusY);
 
 if(player.radiusY < 249 && player.radiusY >= 0){
    // console.log("HOT ZONE");
@@ -162,7 +155,10 @@ else{
 }
 }
 
+
+
 button.addEventListener("click", function (e){
+
     if(!stopped){
         CheckScore()
         stopped = true;
