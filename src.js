@@ -5,16 +5,16 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
 var stopped = false;
-var time = 60;
+var time = 30;
 var frame = 0;
-const CENTER_X = 1107;
-const CENTER_Y = 540;
+const CENTER_X = 1109;
+const CENTER_Y = 565;
 var greenRadiusX = 243;
 var greenRadiusY = 417;
 var button = document.getElementById('button');
 
 var score = 0;
-var timer = '01:00';
+var timer = '00:30';
 var accuracy = '0%';
 
 let setter = 1;
@@ -32,7 +32,7 @@ const drawOvalShape = (ctx, center_x, center_y, radiusX, radiusY, strokeColor, a
     ctx.strokeStyle = strokeColor;
     ctx.fillStyle = fillColor;
     ctx.globalAlpha = alpha;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 4;
     ctx.ellipse(center_x, center_y, radiusX, radiusY,  90 * Math.PI/180, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.fill();
@@ -44,10 +44,12 @@ const drawOvalShape = (ctx, center_x, center_y, radiusX, radiusY, strokeColor, a
 
 const drawRectShape = (ctx, x, y, width, height, color) => {
     ctx.beginPath();
-    ctx.strokeColor = color;
-    ctx.lineWidth = 2;
+    ctx.strokeColor = 'white' ;
+    ctx.fillStyle = color;
+    ctx.lineWidth = 5;
     ctx.rect(x, y, width, height);
     ctx.stroke();
+    ctx.fill();
     ctx.closePath()
 }
 
@@ -76,8 +78,8 @@ const Update = () => {
         time--;
     }
 
-    if(time == 60){
-        timer = '01:00'
+    if(time == 30){
+        timer = '00:30'
     } else if(time < 60 && time >= 10){
         timer = `00:${time}`;
     } else if(time < 10 && time > 0){
@@ -97,32 +99,36 @@ const Draw = () => {
     const bg = new Image();
     bg.src = "assets/bg.png";
     ctx.drawImage(bg,0,0,1900,1080);
+    const sun = new Image();
 
 
     if(score == 0){
-        DrawText(ctx, 210, 310, 'Orbitron', 'normal', 40, 'white', '000');
+        DrawText(ctx, 210, 335, 'Orbitron', 'normal', 40, 'white', '000');
     } else {
-        DrawText(ctx, 210, 310, 'Orbitron', 'normal', 40, 'white', score);
+        DrawText(ctx, 210, 335, 'Orbitron', 'normal', 40, 'white', score);
     }
-    DrawText(ctx, 1590, 170, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
+    DrawText(ctx, 1590, 195, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
 
     if(accuracy == '0' + '%'){
-    DrawText(ctx, 225, 480, 'Orbitron', 'normal', 25, 'white', '00%');   // drawing the accuracy 
+    DrawText(ctx, 225, 505, 'Orbitron', 'normal', 25, 'white', '00%');   // drawing the accuracy 
     }
     else{
-        DrawText(ctx, 225, 480, 'Orbitron', 'normal', 25, 'white', accuracy);
+        DrawText(ctx, 225, 505, 'Orbitron', 'normal', 25, 'white', accuracy);
     }
 
     // drawing for the circles
     drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radiusX, player.radiusY, "white", 1, "transparent");
-    drawRectShape(ctx, CENTER_X - player.radiusY - 7, CENTER_Y, 15, 1);
-    drawRectShape(ctx, CENTER_X + player.radiusY - 7, CENTER_Y, 15, 1);
-    drawRectShape(ctx, CENTER_X, CENTER_Y - player.radiusX - 7, 1, 15);
-    drawRectShape(ctx, CENTER_X, CENTER_Y + player.radiusX - 7 , 1, 15); 
+    drawRectShape(ctx, CENTER_X - player.radiusY - 7, CENTER_Y, 15, 1, 'white');
+    drawRectShape(ctx, CENTER_X + player.radiusY - 7, CENTER_Y, 15, 1, 'white');
+    drawRectShape(ctx, CENTER_X, CENTER_Y - player.radiusX - 7, 1, 15, 'white');
+    drawRectShape(ctx, CENTER_X, CENTER_Y + player.radiusX - 7 , 1, 15, 'white'); 
 
 
     drawOvalShape(ctx, CENTER_X, CENTER_Y, greenRadiusX, greenRadiusY, "white", .1, "green"); // movable green oval
     drawOvalShape(ctx, CENTER_X, CENTER_Y, 145, 249, "white", .09, "blue"); // white one before green
+
+    sun.src = "assets/sun.png";
+    ctx.drawImage(sun, 1034, 490, 150, 150);
     
  }
 
@@ -131,7 +137,6 @@ const CheckScore = () => {
 
 if(player.radiusY < 249 && player.radiusY >= 0){
    // console.log("HOT ZONE");
-    score += 100;
     accuracyPercentage = Math.ceil((player.radiusY / (249)) * 100);  // compares radius of the white to the minGreenRadiusY
     accuracy = accuracyPercentage + '%';
 }
@@ -151,7 +156,6 @@ else{
    // console.log("COLD ZONE");
    accuracyPercentage = Math.ceil((greenRadiusY / player.radiusY) * 100); // player radius divided by max greenRadiusY
    accuracy = accuracyPercentage + '%';
-    score += 100;
 }
 }
 
