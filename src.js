@@ -5,7 +5,7 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
 var stopped = false;
-var time = 2;
+var time = 10;
 var frame = 0;
 const CENTER_X = 1109;
 const CENTER_Y = 565;

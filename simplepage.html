@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Prototype</title>
+    <title>Minigame 1</title>
 </head>
 <style>
      @font-face { font-family: Oxanium; src: url('assets/fonts/Oxanium-Medium.ttf'); } 
@@ -38,15 +38,38 @@
 #gameover{
     position: absolute;
     z-index: 3;
-    top: 70%;
+    top: 67%;
     left: 41%;
     opacity: 1;
     width:320px;
-    height:200px
+    height:200px;
 }
 
 #gameover:hover{
     opacity: .5;
+}
+
+
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
+    #scan{
+    position: absolute;
+    z-index: 3;
+    top: 52%;
+    left: 82%;
+    opacity: 1;
+    width:120px;
+    height:120px;
+}
+
+#gameover{
+    position: absolute;
+    z-index: 3;
+    top: 47%;
+    left: 41%;
+    opacity: 1;
+    width:220px;
+    height:100px;
+}
 }
 
 
