@@ -5,14 +5,14 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
 var stopped = false;
-var time = 30;
+var time = 2;
 var frame = 0;
 const CENTER_X = 1109;
 const CENTER_Y = 565;
 var greenRadiusX = 243;
 var greenRadiusY = 417;
 var button = document.getElementById('scan');
-// var button2 = document.getElementById('button2');
+var button2 = document.getElementById('gameover');
 
 var score = 0;
 var timer = '00:30';
@@ -101,6 +101,7 @@ const Draw = () => {
     bg.src = "assets/bg.png";
     ctx.drawImage(bg,0,0,1900,1080);
     const sun = new Image();
+    button2.style.visibility = 'hidden';
 
 
     if(score == 0){
@@ -137,6 +138,8 @@ const Draw = () => {
         GOscreen.src = 'assets/gameover.png';
         ctx.drawImage(GOscreen,0,0,1900,1080);
         DrawText(ctx, 1010, 640, 'Orbitron', 'normal', 30, 'white', score);  // display score
+        button.style.visibility ='hidden';
+        button2.style.visibility = 'visible';
     }
  }
 
@@ -188,6 +191,10 @@ button.addEventListener("click", function (e){
         player.radiusY = 1;
         player.direction = 1;
     }
+});
+
+button2.addEventListener("click", function (e){
+    location.reload();
 });
 
 // Draw at 60fps

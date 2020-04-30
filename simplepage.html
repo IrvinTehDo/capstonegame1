@@ -20,50 +20,6 @@
          z-index: 1;
     }
 
-/* 
-@media screen and (min-width: 1920px){
-  #button {
-  position: relative;
-  left:83%;
-  font-family: 'Orbitron';
-  font-size: 30px;
-  border-radius: 100px ;
-  height: 150px ;
-  width: 150px ;
-  opacity: 1;
-  margin-top: 42%;
-}
-
-#button:hover{
-    opacity: .5;
-}
-}
-
-@media only screen and (min-width: 640px) and (max-width: 800px){
-#button {
-  position: relative;
-  left:83%;
-  font-family: 'Orbitron';
-  font-size: 30px;
-  border-radius: 100px ;
-  height: 150px ;
-  width: 150px ;
-  opacity: 1;
-  margin-top: 42%;
-}
-}
-
-#button2 {
-  position: relative;
-  left:33%;
-  font-family: 'Orbitron';
-  font-size: 20px;
-  height: 75px ;
-  width: 320px ;
-  opacity: 1;
-  letter-spacing: 3px;  
-} */
-
 #scan{
     position: absolute;
     z-index: 3;
@@ -79,12 +35,27 @@
 }
 
 
+#gameover{
+    position: absolute;
+    z-index: 3;
+    top: 70%;
+    left: 41%;
+    opacity: 1;
+    width:320px;
+    height:200px
+}
+
+#gameover:hover{
+    opacity: .5;
+}
+
+
 
 </style>
 <body>
     <canvas id="gameCanvas" width="1200" height="1000"></canvas>
-    <img id="scan" src="assets/button.svg" alt="scan">
-    <!-- <button id='button2'>RESTART MINIGAME</button> -->
+    <img id="scan" src="assets/button.svg" alt="scan button">
+    <img id="gameover" src="assets/gameover.svg" alt="gameover button">
     <script src="src.js"></script>
 </body>
 </html>
