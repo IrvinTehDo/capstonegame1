@@ -17,72 +17,74 @@
          position: absolute;
          width: 100%;
          height: auto;
+         z-index: 1;
     }
 
+/* 
+@media screen and (min-width: 1920px){
   #button {
   position: relative;
-  left:80%;
+  left:83%;
   font-family: 'Orbitron';
   font-size: 30px;
   border-radius: 100px ;
   height: 150px ;
   width: 150px ;
   opacity: 1;
-  margin-top: 40%;
+  margin-top: 42%;
 }
 
 #button:hover{
     opacity: .5;
 }
+}
 
-@media only screen and (min-height: 700px) and (max-height: 800px){
-    #button {
+@media only screen and (min-width: 640px) and (max-width: 800px){
+#button {
   position: relative;
-  left:80%;
-  font-family: 'Orbitron';
-  font-size: 20px;
-  border-radius: 100px ;
-  height: 135px ;
-  width: 135px ;
-  opacity: .5;
-  margin-top: 40%;
-}
-
-#button:hover{
-    opacity: .5;
-}
-
-}
-@media only screen and (min-height: 300px) and (max-height: 700px){
-    #button {
-        border-radius: 100px ;
-        font-size: 20px;
-  height: 90px ;
-  width: 90px ;
-  margin-top: 40%;
-}
-
-}
-
-@media only screen and (min-width: 720px) and (max-width: 1350px){
-    #button {
-        position: relative;
-  left:80%;
+  left:83%;
   font-family: 'Orbitron';
   font-size: 30px;
-  border-radius: 90px ;
-  height: 120px ;
-  width: 120px ;
+  border-radius: 100px ;
+  height: 150px ;
+  width: 150px ;
   opacity: 1;
-  margin-top: 38%;
+  margin-top: 42%;
+}
 }
 
+#button2 {
+  position: relative;
+  left:33%;
+  font-family: 'Orbitron';
+  font-size: 20px;
+  height: 75px ;
+  width: 320px ;
+  opacity: 1;
+  letter-spacing: 3px;  
+} */
+
+#scan{
+    position: absolute;
+    z-index: 3;
+    top: 80%;
+    left: 80%;
+    opacity: 1;
+    width:200px;
+    height:200px
 }
+
+#scan:hover{
+    opacity: .5;
+}
+
+
 
 </style>
 <body>
-    <canvas id="gameCanvas" width="1920" height="1080"></canvas>
-    <button id='button'>Scan</button>
+    <canvas id="gameCanvas" width="1200" height="1000"></canvas>
+    <img id="scan" src="assets/button.svg" alt="scan">
+    <!-- <button id='button2'>RESTART MINIGAME</button> -->
     <script src="src.js"></script>
 </body>
 </html>

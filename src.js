@@ -11,7 +11,8 @@ const CENTER_X = 1109;
 const CENTER_Y = 565;
 var greenRadiusX = 243;
 var greenRadiusY = 417;
-var button = document.getElementById('button');
+var button = document.getElementById('scan');
+// var button2 = document.getElementById('button2');
 
 var score = 0;
 var timer = '00:30';
@@ -25,6 +26,7 @@ const player = {
     direction: 1,
     speed: 3,
 };
+
 
 const drawOvalShape = (ctx, center_x, center_y, radiusX, radiusY, strokeColor, alpha, fillColor) =>{
     ctx.beginPath();
@@ -95,7 +97,6 @@ const Update = () => {
 
 const Draw = () => {
     ctx.clearRect(0,0,1920,1080);
-
     const bg = new Image();
     bg.src = "assets/bg.png";
     ctx.drawImage(bg,0,0,1900,1080);
@@ -130,6 +131,13 @@ const Draw = () => {
     sun.src = "assets/sun.png";
     ctx.drawImage(sun, 1034, 490, 150, 150);
     
+    // timer stopped
+    if(timer == `00:00`){
+        const GOscreen = new Image();
+        GOscreen.src = 'assets/gameover.png';
+        ctx.drawImage(GOscreen,0,0,1900,1080);
+        DrawText(ctx, 1010, 640, 'Orbitron', 'normal', 30, 'white', score);  // display score
+    }
  }
 
 
