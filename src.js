@@ -5,12 +5,12 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
 var stopped = false;
-var time = 10;
+var time = 30;
 var frame = 0;
 const CENTER_X = 1109;
 const CENTER_Y = 565;
-var greenRadiusX = 243;
-var greenRadiusY = 417;
+var greenRadiusX = 240;
+var greenRadiusY = 416;
 var button = document.getElementById('scan');
 var button2 = document.getElementById('gameover');
 
@@ -105,9 +105,9 @@ const Draw = () => {
 
 
     if(score == 0){
-        DrawText(ctx, 210, 335, 'Orbitron', 'normal', 40, 'white', '000');
+        DrawText(ctx, 210, 333, 'Orbitron', 'normal', 40, 'white', '000');
     } else {
-        DrawText(ctx, 210, 335, 'Orbitron', 'normal', 40, 'white', score);
+        DrawText(ctx, 210, 333, 'Orbitron', 'normal', 40, 'white', score);
     }
     DrawText(ctx, 1590, 195, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
 
@@ -127,7 +127,7 @@ const Draw = () => {
 
 
     drawOvalShape(ctx, CENTER_X, CENTER_Y, greenRadiusX, greenRadiusY, "white", .1, "green"); // movable green oval
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 145, 249, "white", .09, "blue"); // white one before green
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 146, 249, "white", .09, "blue"); // white one before green
 
     sun.src = "assets/sun.png";
     ctx.drawImage(sun, 1034, 490, 150, 150);
