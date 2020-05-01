@@ -5,12 +5,12 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
 var stopped = false;
-var time = 10;
+var time = 5;
 var frame = 0;
-const CENTER_X = 1115;
-const CENTER_Y = 473;
-var greenRadiusX = 227;
-var greenRadiusY = 423;
+const CENTER_X = c.width / 1.722;
+const CENTER_Y = c.height / 2.0698;
+var greenRadiusX = c.width / 8.458;
+var greenRadiusY = c.height / 2.314;
 var button = document.getElementById('scan');
 var button2 = document.getElementById('gameover');
 
@@ -105,19 +105,19 @@ const Draw = () => {
 
 
     if(score == 0){
-
-        console.log('width: ' + c.width);
-        DrawText(ctx, 208, 259, 'Orbitron', 'normal', 40, 'white', '000');
+        // width 1920
+        // height 979
+        DrawText(ctx, c.width /  9.23 , c.height / 3.78, 'Orbitron', 'normal', 40, 'white', '000');
     } else {
-        DrawText(ctx, 208, 259, 'Orbitron', 'normal', 40, 'white', score);
+        DrawText(ctx, c.width /  9.23 , c.height / 3.78, 'Orbitron', 'normal', 40, 'white', score);
     }
-    DrawText(ctx, 1600, 129, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
+    DrawText(ctx, c.width / 1.2, c.height / 7.59, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
 
     if(accuracy == '0' + '%'){
-    DrawText(ctx, 226, 419, 'Orbitron', 'normal', 25, 'white', '00%');   // drawing the accuracy 
+    DrawText(ctx, c.width / 8.495, c.height / 2.33, 'Orbitron', 'normal', 25, 'white', '00%');   // drawing the accuracy 
     }
     else{
-        DrawText(ctx, 226, 419, 'Orbitron', 'normal', 25, 'white', accuracy);
+        DrawText(ctx, c.width / 8.495, c.height / 2.33, 'Orbitron', 'normal', 25, 'white', accuracy);
     }
 
     // drawing for the circles
@@ -132,15 +132,15 @@ const Draw = () => {
     drawOvalShape(ctx, CENTER_X, CENTER_Y, 134, 252, "white", .09, "blue"); // white one before green
 
     sun.src = "assets/sun.png";
-    ctx.drawImage(sun, 1041, 400, 150, 150);
+    ctx.drawImage(sun, c.width / 1.8445, c.height / 2.45, 150, 150);
     
     // timer stopped
     if(timer == `00:00`){
-        ctx.clearRect(0,0,1920,1080);
+        ctx.clearRect(0,0,c.width,c.height);
         const GOscreen = new Image();
         GOscreen.src = 'assets/gameover.png';
         ctx.drawImage(GOscreen,0,0,c.width,c.height);
-        DrawText(ctx, 1025, 598, 'Orbitron', 'normal', 29, 'white', score);  // display score
+        DrawText(ctx, c.width / 1.873, c.height / 1.637, 'Orbitron', 'normal', 29, 'white', score);  // display score
         button.style.visibility ='hidden';
         button2.style.visibility = 'visible';
     }
