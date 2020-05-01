@@ -159,8 +159,8 @@ else if( (player.radiusY > c.height / 3.885 ) && (player.radiusY < greenRadiusY)
     accuracy = accuracyPercentage + '%';
 
     if(greenRadiusX >= (c.width / 14.328) && greenRadiusY >= c.height / 3.885){  // makes sure the green circle doesn't get smaller than the white one
-    greenRadiusX -= 10;  // decrease the green radius everytime player hits green zone
-    greenRadiusY -= 20;
+    greenRadiusX -= 5;  // decrease the green radius everytime player hits green zone
+    greenRadiusY -= 10;
     }
 }
 else{
