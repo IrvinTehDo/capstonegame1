@@ -5,12 +5,12 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
 var stopped = false;
-var time = 30;
+var time = 10;
 var frame = 0;
-const CENTER_X = 1109;
-const CENTER_Y = 565;
-var greenRadiusX = 240;
-var greenRadiusY = 416;
+const CENTER_X = 1102;
+const CENTER_Y = 512;
+var greenRadiusX = 241;
+var greenRadiusY = 418;
 var button = document.getElementById('scan');
 var button2 = document.getElementById('gameover');
 
@@ -46,7 +46,7 @@ const drawOvalShape = (ctx, center_x, center_y, radiusX, radiusY, strokeColor, a
 
 const drawRectShape = (ctx, x, y, width, height, color) => {
     ctx.beginPath();
-    ctx.strokeColor = 'white' ;
+    ctx.strokeStyle = 'white';
     ctx.fillStyle = color;
     ctx.lineWidth = 5;
     ctx.rect(x, y, width, height);
@@ -98,24 +98,24 @@ const Update = () => {
 const Draw = () => {
     ctx.clearRect(0,0,1920,1080);
     const bg = new Image();
-    bg.src = "assets/bg.png";
+    bg.src = "assets/bg1.png";
     ctx.drawImage(bg,0,0,1900,1080);
     const sun = new Image();
     button2.style.visibility = 'hidden';
 
 
     if(score == 0){
-        DrawText(ctx, 210, 333, 'Orbitron', 'normal', 40, 'white', '000');
+        DrawText(ctx, 205, 280, 'Orbitron', 'normal', 40, 'white', '000');
     } else {
-        DrawText(ctx, 210, 333, 'Orbitron', 'normal', 40, 'white', score);
+        DrawText(ctx, 205, 280, 'Orbitron', 'normal', 40, 'white', score);
     }
-    DrawText(ctx, 1590, 195, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
+    DrawText(ctx, 1580, 140, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
 
     if(accuracy == '0' + '%'){
-    DrawText(ctx, 225, 505, 'Orbitron', 'normal', 25, 'white', '00%');   // drawing the accuracy 
+    DrawText(ctx, 221, 450, 'Orbitron', 'normal', 25, 'white', '00%');   // drawing the accuracy 
     }
     else{
-        DrawText(ctx, 225, 505, 'Orbitron', 'normal', 25, 'white', accuracy);
+        DrawText(ctx, 221, 450, 'Orbitron', 'normal', 25, 'white', accuracy);
     }
 
     // drawing for the circles
@@ -130,14 +130,15 @@ const Draw = () => {
     drawOvalShape(ctx, CENTER_X, CENTER_Y, 146, 249, "white", .09, "blue"); // white one before green
 
     sun.src = "assets/sun.png";
-    ctx.drawImage(sun, 1034, 490, 150, 150);
+    ctx.drawImage(sun, 1030, 437, 150, 150);
     
     // timer stopped
     if(timer == `00:00`){
+        ctx.clearRect(0,0,1920,1080);
         const GOscreen = new Image();
         GOscreen.src = 'assets/gameover.png';
         ctx.drawImage(GOscreen,0,0,1900,1080);
-        DrawText(ctx, 1010, 640, 'Orbitron', 'normal', 30, 'white', score);  // display score
+        DrawText(ctx, 1020, 658, 'Orbitron', 'normal', 29, 'white', score);  // display score
         button.style.visibility ='hidden';
         button2.style.visibility = 'visible';
     }
