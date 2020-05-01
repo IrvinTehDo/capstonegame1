@@ -149,16 +149,16 @@ const Draw = () => {
 
 const CheckScore = () => {
 
-if(player.radiusY < 252 && player.radiusY >= 0){
-    accuracyPercentage = Math.ceil((player.radiusY / (252)) * 100);  // compares radius of the white to the minGreenRadiusY
+if(player.radiusY < c.height / 3.885 && player.radiusY >= 0){
+    accuracyPercentage = Math.ceil((player.radiusY / (c.height / 3.885)) * 100);  // compares radius of the white to the minGreenRadiusY
     accuracy = accuracyPercentage + '%';
 }
-else if( (player.radiusY > 252 ) && (player.radiusY < greenRadiusY)){
+else if( (player.radiusY > c.height / 3.885 ) && (player.radiusY < greenRadiusY)){
     score += 150;
     accuracyPercentage = 100;
     accuracy = accuracyPercentage + '%';
 
-    if(greenRadiusX >= 134 && greenRadiusY >= 252){  // makes sure the green circle doesn't get smaller than the white one
+    if(greenRadiusX >= (c.width / 14.328) && greenRadiusY >= c.height / 3.885){  // makes sure the green circle doesn't get smaller than the white one
     greenRadiusX -= 10;  // decrease the green radius everytime player hits green zone
     greenRadiusY -= 20;
     }
