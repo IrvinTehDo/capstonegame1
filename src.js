@@ -105,6 +105,8 @@ const Draw = () => {
 
 
     if(score == 0){
+
+        console.log('width: ' + c.width);
         DrawText(ctx, 208, 259, 'Orbitron', 'normal', 40, 'white', '000');
     } else {
         DrawText(ctx, 208, 259, 'Orbitron', 'normal', 40, 'white', score);
