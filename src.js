@@ -5,12 +5,12 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
 var stopped = false;
-var time = 30;
+var time = 10;
 var frame = 0;
-const CENTER_X = 1102;
-const CENTER_Y = 512;
-var greenRadiusX = 241;
-var greenRadiusY = 418;
+const CENTER_X = 1115;
+const CENTER_Y = 473;
+var greenRadiusX = 227;
+var greenRadiusY = 423;
 var button = document.getElementById('scan');
 var button2 = document.getElementById('gameover');
 
@@ -96,26 +96,26 @@ const Update = () => {
 }
 
 const Draw = () => {
-    ctx.clearRect(0,0,1920,1080);
+    ctx.clearRect(0,0,c.width,c.height);
     const bg = new Image();
     bg.src = "assets/bg1.png";
-    ctx.drawImage(bg,0,0,1900,1080);
+    ctx.drawImage(bg,0,0,c.width,c.height);
     const sun = new Image();
     button2.style.visibility = 'hidden';
 
 
     if(score == 0){
-        DrawText(ctx, 205, 280, 'Orbitron', 'normal', 40, 'white', '000');
+        DrawText(ctx, 208, 259, 'Orbitron', 'normal', 40, 'white', '000');
     } else {
-        DrawText(ctx, 205, 280, 'Orbitron', 'normal', 40, 'white', score);
+        DrawText(ctx, 208, 259, 'Orbitron', 'normal', 40, 'white', score);
     }
-    DrawText(ctx, 1580, 140, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
+    DrawText(ctx, 1600, 129, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
 
     if(accuracy == '0' + '%'){
-    DrawText(ctx, 221, 450, 'Orbitron', 'normal', 25, 'white', '00%');   // drawing the accuracy 
+    DrawText(ctx, 226, 419, 'Orbitron', 'normal', 25, 'white', '00%');   // drawing the accuracy 
     }
     else{
-        DrawText(ctx, 221, 450, 'Orbitron', 'normal', 25, 'white', accuracy);
+        DrawText(ctx, 226, 419, 'Orbitron', 'normal', 25, 'white', accuracy);
     }
 
     // drawing for the circles
@@ -127,18 +127,18 @@ const Draw = () => {
 
 
     drawOvalShape(ctx, CENTER_X, CENTER_Y, greenRadiusX, greenRadiusY, "white", .1, "green"); // movable green oval
-    drawOvalShape(ctx, CENTER_X, CENTER_Y, 146, 249, "white", .09, "blue"); // white one before green
+    drawOvalShape(ctx, CENTER_X, CENTER_Y, 134, 252, "white", .09, "blue"); // white one before green
 
     sun.src = "assets/sun.png";
-    ctx.drawImage(sun, 1030, 437, 150, 150);
+    ctx.drawImage(sun, 1041, 400, 150, 150);
     
     // timer stopped
     if(timer == `00:00`){
         ctx.clearRect(0,0,1920,1080);
         const GOscreen = new Image();
         GOscreen.src = 'assets/gameover.png';
-        ctx.drawImage(GOscreen,0,0,1900,1080);
-        DrawText(ctx, 1020, 658, 'Orbitron', 'normal', 29, 'white', score);  // display score
+        ctx.drawImage(GOscreen,0,0,c.width,c.height);
+        DrawText(ctx, 1025, 598, 'Orbitron', 'normal', 29, 'white', score);  // display score
         button.style.visibility ='hidden';
         button2.style.visibility = 'visible';
     }
@@ -147,25 +147,21 @@ const Draw = () => {
 
 const CheckScore = () => {
 
-if(player.radiusY < 249 && player.radiusY >= 0){
-   // console.log("HOT ZONE");
-    accuracyPercentage = Math.ceil((player.radiusY / (249)) * 100);  // compares radius of the white to the minGreenRadiusY
+if(player.radiusY < 252 && player.radiusY >= 0){
+    accuracyPercentage = Math.ceil((player.radiusY / (252)) * 100);  // compares radius of the white to the minGreenRadiusY
     accuracy = accuracyPercentage + '%';
 }
-else if( (player.radiusY > 249 ) && (player.radiusY < greenRadiusY)){
-    console.log("NICE ZONE");
+else if( (player.radiusY > 252 ) && (player.radiusY < greenRadiusY)){
     score += 150;
     accuracyPercentage = 100;
     accuracy = accuracyPercentage + '%';
 
-    if(greenRadiusX >= 145 && greenRadiusY >= 249){  // makes sure the green circle doesn't get smaller than the white one
+    if(greenRadiusX >= 134 && greenRadiusY >= 252){  // makes sure the green circle doesn't get smaller than the white one
     greenRadiusX -= 10;  // decrease the green radius everytime player hits green zone
-    greenRadiusY -= 18;
+    greenRadiusY -= 20;
     }
-
 }
 else{
-   // console.log("COLD ZONE");
    accuracyPercentage = Math.ceil((greenRadiusY / player.radiusY) * 100); // player radius divided by max greenRadiusY
    accuracy = accuracyPercentage + '%';
 }
