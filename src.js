@@ -67,7 +67,7 @@ const Update = () => {
     if(!stopped){
         player.radiusX += ((player.speed * (658/1184)) * player.direction);
         player.radiusY += (player.speed * player.direction);
-        if(player.radiusY >= 590){
+        if(player.radiusY >=  c.height / 1.72){
             player.direction *= -1;
         } else if (player.radiusY <= 1){
             player.direction *= -1;
@@ -107,20 +107,20 @@ const Draw = () => {
     if(score == 0){
         // width 1920
         // height 979
-        DrawText(ctx, c.width /  9.23 , c.height / 3.78, 'Orbitron', 'normal', 40, 'white', '000');
+        DrawText(ctx, c.width /  9.23 , c.height / 3.78, 'Orbitron', 'normal', c.width / 60, 'white', '000');
     } else {
-        DrawText(ctx, c.width /  9.23 , c.height / 3.78, 'Orbitron', 'normal', 40, 'white', score);
+        DrawText(ctx, c.width /  9.23 , c.height / 3.78, 'Orbitron', 'normal', c.width / 60, 'white', score);
     }
-    DrawText(ctx, c.width / 1.2, c.height / 7.59, 'Orbitron', 'normal', 30, 'white', timer);   // drawing the timer
+    DrawText(ctx, c.width / 1.2, c.height / 7.59, 'Orbitron', 'normal', c.width / 64, 'white', timer);   // drawing the timer
 
     if(accuracy == '0' + '%'){
-    DrawText(ctx, c.width / 8.495, c.height / 2.33, 'Orbitron', 'normal', 25, 'white', '00%');   // drawing the accuracy 
+    DrawText(ctx, c.width / 8.495, c.height / 2.33, 'Orbitron', 'normal', c.width / 76.8, 'white', '00%');   // drawing the accuracy 
     }
     else{
-        DrawText(ctx, c.width / 8.495, c.height / 2.33, 'Orbitron', 'normal', 25, 'white', accuracy);
+        DrawText(ctx, c.width / 8.495, c.height / 2.33, 'Orbitron', 'normal', c.width / 76.8, 'white', accuracy);
     }
 
-    // drawing for the circles
+    // drawing for the pulsating circles
     drawOvalShape(ctx, CENTER_X, CENTER_Y, player.radiusX, player.radiusY, "white", 1, "transparent");
     drawRectShape(ctx, CENTER_X - player.radiusY - 7, CENTER_Y, 15, 1, 'white');
     drawRectShape(ctx, CENTER_X + player.radiusY - 7, CENTER_Y, 15, 1, 'white');
@@ -131,8 +131,9 @@ const Draw = () => {
     drawOvalShape(ctx, CENTER_X, CENTER_Y, greenRadiusX, greenRadiusY, "white", .1, "green"); // movable green oval
     drawOvalShape(ctx, CENTER_X, CENTER_Y, 134, 252, "white", .09, "blue"); // white one before green
 
+
     sun.src = "assets/sun.png";
-    ctx.drawImage(sun, c.width / 1.8445, c.height / 2.45, 150, 150);
+    ctx.drawImage(sun, c.width / 1.8445, c.height / 2.45, c.width / 12.8, c.height / 6.526667);
     
     // timer stopped
     if(timer == `00:00`){
@@ -140,7 +141,7 @@ const Draw = () => {
         const GOscreen = new Image();
         GOscreen.src = 'assets/gameover.png';
         ctx.drawImage(GOscreen,0,0,c.width,c.height);
-        DrawText(ctx, c.width / 1.873, c.height / 1.637, 'Orbitron', 'normal', 29, 'white', score);  // display score
+        DrawText(ctx, c.width / 1.873, c.height / 1.637, 'Orbitron', 'normal', c.width / 66.206, 'white', score);  // display score
         button.style.visibility ='hidden';
         button2.style.visibility = 'visible';
     }
