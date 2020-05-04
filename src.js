@@ -107,9 +107,9 @@ const Draw = () => {
     if(score == 0){
         // width 1920
         // height 979
-        DrawText(ctx, c.width /  9.23 , c.height / 3.78, 'Orbitron', 'normal', c.width / 60, 'white', '000');
+        DrawText(ctx, c.width /  8.8 , c.height / 3.78, 'Orbitron', 'normal', c.width / 60, 'white', '000');
     } else {
-        DrawText(ctx, c.width /  9.23 , c.height / 3.78, 'Orbitron', 'normal', c.width / 60, 'white', score);
+        DrawText(ctx, c.width /  8.8 , c.height / 3.78, 'Orbitron', 'normal', c.width / 60, 'white', score);
     }
     DrawText(ctx, c.width / 1.2, c.height / 7.59, 'Orbitron', 'normal', c.width / 64, 'white', timer);   // drawing the timer
 
@@ -141,7 +141,7 @@ const Draw = () => {
         const GOscreen = new Image();
         GOscreen.src = 'assets/gameover.png';
         ctx.drawImage(GOscreen,0,0,c.width,c.height);
-        DrawText(ctx, c.width / 1.873, c.height / 1.57, 'Orbitron', 'normal', c.width / 66.206, 'white', score);  // display score
+        DrawText(ctx, c.width / 1.803, c.height / 1.573, 'Orbitron', 'normal', c.width / 66.206, 'white', score);  // display score
         button.style.visibility ='hidden';
         button2.style.visibility = 'visible';
     }
