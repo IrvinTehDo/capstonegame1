@@ -64,16 +64,15 @@ const DrawText = (ctx, x, y, font, type, size, style, text) => {
 
 // updates the line movement
 const Update = () => {
-    if(!stopped){
-        player.radiusX += ((player.speed * (658/1184)) * player.direction);
-        player.radiusY += (player.speed * player.direction);
-        if(player.radiusY >=  c.height / 1.72){    // if pulsating radius is greater than the outer oval
-            player.direction *= -1;                // decrease size
-        } else if (player.radiusY <= 1){    
-            player.direction *= -1;             // increase the size
+        if(!stopped){
+            player.radiusX += ((player.speed * (658/1184)) * player.direction);
+            player.radiusY += (player.speed * player.direction);
+            if(player.radiusY >=  c.height / 1.72){    // if pulsating radius is greater than the outer oval
+                player.direction *= -1;                // decrease size
+            } else if (player.radiusY <= 1){    
+                player.direction *= -1;             // increase the size
+            }
         }
-    }
-
 
     frame++;
     if(frame == 60){
@@ -171,24 +170,25 @@ else{
 }
 }
 
+const sleep = (milliseconds) => {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
 
 
-button.addEventListener("click", function (e){
-
-    if(!stopped){
+    button.addEventListener("click", function (e){
+        sleep(250);
         CheckScore();
-        player.radiusX = 1;
-        player.radiusY = 1;
-        player.direction = 1;
-
+            player.radiusX = 1;
+            player.radiusY = 1;
+            player.direction = 1;
         if(setter < 10){            // increase speed
             player.speed += 1.5;
             setter++;
         }
-        else{
-            console.log('Move on to next screen.');
-        }
-    }
 });
 
 button2.addEventListener("click", function (e){
