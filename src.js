@@ -5,7 +5,7 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
 var stopped = false;
-var time = 30;
+var time = 10;
 var frame = 0;
 const CENTER_X = c.width / 1.722;
 const CENTER_Y = c.height / 2.0698;
@@ -67,12 +67,13 @@ const Update = () => {
     if(!stopped){
         player.radiusX += ((player.speed * (658/1184)) * player.direction);
         player.radiusY += (player.speed * player.direction);
-        if(player.radiusY >=  c.height / 1.72){
-            player.direction *= -1;
-        } else if (player.radiusY <= 1){
-            player.direction *= -1;
+        if(player.radiusY >=  c.height / 1.72){    // if pulsating radius is greater than the outer oval
+            player.direction *= -1;                // decrease size
+        } else if (player.radiusY <= 1){    
+            player.direction *= -1;             // increase the size
         }
     }
+
 
     frame++;
     if(frame == 60){
@@ -175,8 +176,10 @@ else{
 button.addEventListener("click", function (e){
 
     if(!stopped){
-        CheckScore()
-        stopped = true;
+        CheckScore();
+        player.radiusX = 1;
+        player.radiusY = 1;
+        player.direction = 1;
 
         if(setter < 10){            // increase speed
             player.speed += 1.5;
@@ -185,11 +188,6 @@ button.addEventListener("click", function (e){
         else{
             console.log('Move on to next screen.');
         }
-    } else {
-        stopped = false;
-        player.radiusX = 1;
-        player.radiusY = 1;
-        player.direction = 1;
     }
 });
 
