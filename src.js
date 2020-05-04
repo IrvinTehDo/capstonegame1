@@ -141,7 +141,7 @@ const Draw = () => {
         const GOscreen = new Image();
         GOscreen.src = 'assets/gameover.png';
         ctx.drawImage(GOscreen,0,0,c.width,c.height);
-        DrawText(ctx, c.width / 1.873, c.height / 1.637, 'Orbitron', 'normal', c.width / 66.206, 'white', score);  // display score
+        DrawText(ctx, c.width / 1.873, c.height / 1.57, 'Orbitron', 'normal', c.width / 66.206, 'white', score);  // display score
         button.style.visibility ='hidden';
         button2.style.visibility = 'visible';
     }
